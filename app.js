@@ -7,6 +7,7 @@ const cors = require('cors');
 const app = express();
 
 const itemsRouter = require('./app/api/v1/items/router');
+const banksRouter = require('./app/api/v1/banks/router');
 
 const v1 = '/api/v1';
 
@@ -24,5 +25,6 @@ app.get('/', (req, res) => {
 });
 
 app.use(`${v1}/cms`, itemsRouter);
+app.use(`${v1}/cms`, banksRouter);
 
 module.exports = app;

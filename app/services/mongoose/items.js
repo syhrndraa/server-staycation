@@ -35,6 +35,8 @@ const createItems = async (req) => {
   return result;
 };
 
+const getAllItems = async (req) => {};
+
 module.exports = {
   createItems,
 };
