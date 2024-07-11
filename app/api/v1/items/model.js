@@ -35,23 +35,23 @@ const itemSchema = Schema(
       type: Number,
       default: 0,
     },
-    // categoryId: {
+    // category: {
     //   type: ObjectId,
     //   ref: 'Category',
     // },
-    // imageId: [
+    // image: [
     //   {
     //     type: ObjectId,
     //     ref: 'Image',
     //   },
     // ],
-    // featureId: [
+    // feature: [
     //   {
     //     type: ObjectId,
     //     ref: 'Feature',
     //   },
     // ],
-    // activityId: [
+    // activity: [
     //   {
     //     type: ObjectId,
     //     ref: 'Activity',

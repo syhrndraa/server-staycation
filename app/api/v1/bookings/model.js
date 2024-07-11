@@ -56,11 +56,11 @@ const bookingSchema = Schema(
       type: Number,
       required: true,
     },
-    memberId: {
+    member: {
       type: mongoose.Types.ObjectId,
       ref: 'Member',
     },
-    bankId: {
+    bank: {
       type: mongoose.Types.ObjectId,
       ref: 'Bank',
     },

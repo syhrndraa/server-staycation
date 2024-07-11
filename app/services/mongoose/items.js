@@ -37,6 +37,14 @@ const createItems = async (req) => {
 
 const getAllItems = async (req) => {};
 
+const checkingItem = async (id) => {
+  const result = await Items.findOne({ _id: id });
+  if (!result) throw new NotFoundError(`Tidak ada Item dengan id :  ${id}`);
+
+  return result;
+};
+
 module.exports = {
   createItems,
+  checkingItem,
 };

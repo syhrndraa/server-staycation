@@ -15,11 +15,11 @@ const featureSchema = Schema(
     //     type: String,
     //     required: true
     //   },
-    imageId: {
+    image: {
       type: mongoose.Types.ObjectId,
       ref: 'Image',
     },
-    itemId: {
+    item: {
       type: mongoose.Types.ObjectId,
       ref: 'Item',
     },

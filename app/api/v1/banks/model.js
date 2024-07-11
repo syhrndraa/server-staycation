@@ -15,10 +15,10 @@ const bankSchema = Schema(
       type: String,
       required: true,
     },
-    //   imageUrl: {
-    //     type: String,
-    //     required: true,
-    //   },
+    image: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Image',
+    },
   },
   { timestamps: true }
 );

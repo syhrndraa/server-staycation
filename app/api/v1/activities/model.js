@@ -15,15 +15,15 @@ const activitySchema = Schema(
     //   type: String,
     //   required: true,
     // },
-    imageId: {
+    image: {
       type: mongoose.Types.ObjectId,
       ref: 'Image',
     },
     isPopular: {
       type: Boolean,
     },
-    itemId: {
-      type: ObjectId,
+    item: {
+      type: mongoose.Types.ObjectId,
       ref: 'Item',
     },
   },
