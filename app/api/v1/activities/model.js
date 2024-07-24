@@ -21,6 +21,8 @@ const activitySchema = Schema(
     },
     isPopular: {
       type: Boolean,
+      enum: ['True', 'False'],
+      default: 'True',
     },
     item: {
       type: mongoose.Types.ObjectId,
