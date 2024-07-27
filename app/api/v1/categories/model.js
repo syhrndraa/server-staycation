@@ -7,12 +7,12 @@ const categorySchema = Schema(
       type: String,
       required: true,
     },
-    item: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: 'Item',
-      },
-    ],
+    // item: [
+    //   {
+    //     type: mongoose.Types.ObjectId,
+    //     ref: 'Item',
+    //   },
+    // ],
   },
   { timestamps: true }
 );

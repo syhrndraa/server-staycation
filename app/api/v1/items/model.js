@@ -35,28 +35,28 @@ const itemSchema = Schema(
       type: Number,
       default: 0,
     },
-    // category: {
-    //   type: ObjectId,
-    //   ref: 'Category',
-    // },
-    // image: [
-    //   {
-    //     type: ObjectId,
-    //     ref: 'Image',
-    //   },
-    // ],
-    // feature: [
-    //   {
-    //     type: ObjectId,
-    //     ref: 'Feature',
-    //   },
-    // ],
-    // activity: [
-    //   {
-    //     type: ObjectId,
-    //     ref: 'Activity',
-    //   },
-    // ],
+    category: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Category',
+    },
+    image: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: 'Image',
+      },
+    ],
+    feature: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: 'Feature',
+      },
+    ],
+    activity: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: 'Activity',
+      },
+    ],
   },
   { timestamps: true }
 );

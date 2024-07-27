@@ -1,4 +1,5 @@
 const Features = require('../../api/v1/features/model');
+const Items = require('../../api/v1/items/model');
 const { checkingImage } = require('./images');
 const { checkingItem } = require('./items');
 const { NotFoundError, BadRequestError } = require('../../errors');
@@ -15,6 +16,10 @@ const createFeatures = async (req) => {
     image,
     item,
   });
+
+  const items = await Items.findOne({ _id: id });
+  items.feature.push({ _id: result._id });
+  await items.save();
 
   return result;
 };
@@ -74,7 +79,25 @@ const deleteFeatures = async (req) => {
   const result = await Features.findOne({ _id: id });
   if (!result) throw new NotFoundError(`Tidak ada feature dengan id: ${id}`);
 
+  const items = await Items.findOne({ _id: id }).populate({ path: 'feature' });
+
+  for (const act of items.feature) {
+    if (act._id.toString() === result._id.toString()) {
+      items.feature.pull({ _id: result._id });
+      await items.save();
+    }
+  }
+
   await result.deleteOne();
+  return result;
+};
+
+const checkingFeature = async (id) => {
+  const result = await Features.findOne({ _id: id });
+  console.log(result);
+
+  if (!result) throw new NotFoundError(`Tidak ada Feature dengan id :  ${id}`);
+
   return result;
 };
 
@@ -84,4 +107,5 @@ module.exports = {
   getOneFeatures,
   updateFeatures,
   deleteFeatures,
+  checkingFeature,
 };

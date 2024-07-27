@@ -1,4 +1,5 @@
 const Activities = require('../../api/v1/activities/model');
+const Items = require('../../api/v1/items/model');
 const { checkingImage } = require('./images');
 const { checkingItem } = require('./items');
 const { NotFoundError, BadRequestError } = require('../../errors');
@@ -16,6 +17,10 @@ const createActivities = async (req) => {
     isPopular,
     item,
   });
+
+  const items = await Items.findOne({ _id: id });
+  items.activity.push({ _id: result._id });
+  await items.save();
 
   return result;
 };
@@ -71,6 +76,15 @@ const deleteActivities = async (req) => {
 
   if (!result) throw new NotFoundError(`Tidak ada activity dengan id : ${id}`);
 
+  const items = await Items.findOne({ _id: id }).populate({ path: 'activity' });
+
+  for (const act of items.activity) {
+    if (act._id.toString() === result._id.toString()) {
+      items.activity.pull({ _id: result._id });
+      await items.save();
+    }
+  }
+
   await result.deleteOne();
   return result;
 };
@@ -91,6 +105,15 @@ const changeStatusActivities = async (req) => {
   return check;
 };
 
+const checkingActivity = async (id) => {
+  const result = await Activities.findOne({ _id: id });
+  console.log(result);
+
+  if (!result) throw new NotFoundError(`Tidak ada activity dengan id :  ${id}`);
+
+  return result;
+};
+
 module.exports = {
   createActivities,
   getOneActivities,
@@ -98,4 +121,5 @@ module.exports = {
   updateActivities,
   deleteActivities,
   changeStatusActivities,
+  checkingActivity,
 };
